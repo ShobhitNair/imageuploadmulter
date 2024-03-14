@@ -4,8 +4,11 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const dotenv = require('dotenv')
+import { fileURLToPath } from "url";
 const UserModel = require('./models/User')
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors())
 dotenv.config();
