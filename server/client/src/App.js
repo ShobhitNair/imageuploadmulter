@@ -12,7 +12,7 @@ function App() {
 
     try {
       await axios.post(`${window.location.origin}/upload`, formdata);
-      const response = await axios.get("http://localhost:3001/getImage");
+      const response = await axios.get(`${window.location.origin}/getImage`);
       setImages(response.data.map((item) => item.image));
     } catch (error) {
       console.log(error);

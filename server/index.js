@@ -8,12 +8,12 @@ const UserModel = require('./models/User')
 
 
 const app = express();
+const PORT = process.env.PORT || 3001
 app.use(cors())
 dotenv.config();
 app.use(express.json())
 app.use(express.static('public'))
 
-const PORT = process.env.PORT || 3001
 
 const storage = multer.diskStorage({
     destination: (req,file,cb)=>{
