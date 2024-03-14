@@ -49,7 +49,7 @@ function App() {
             <img
               className="w-48 h-48 m-2 p-1"
               key={index}
-              src={`${window.location.origin}/api/Images/`+image}
+              src={`${window.location.origin}/Images/`+image}
               alt={`image_${index}`}
             />
           ))}
