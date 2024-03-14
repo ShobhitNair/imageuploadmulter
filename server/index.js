@@ -6,13 +6,16 @@ const path = require('path')
 const dotenv = require('dotenv')
 const UserModel = require('./models/User')
 
-
+const filePath = __filename;
+const dirName = path.dirname(filePath);
 const app = express();
 const PORT = process.env.PORT || 3001
 app.use(cors())
 dotenv.config();
 app.use(express.json())
-app.use(express.static('public'))
+// app.use(express.static('public'))
+app.use("/Images", express.static(path.join(dirName, "public/Images")));
+
 
 
 const storage = multer.diskStorage({
@@ -33,9 +36,7 @@ app.post('/upload',upload.single('file'),(req,res)=>{
         .catch(err => console.log(err))
 })
 
-app.get('/', (req,res)=>{
-    res.json('hello')
-})
+
 
 app.get('/getImage', (req,res)=>{
     UserModel.find()
@@ -43,14 +44,13 @@ app.get('/getImage', (req,res)=>{
     .catch(err => res.json(err))
 })
 
-app.use(express.static(path.resolve(__dirname,"client","build")));
+app.use(express.static(path.resolve(dirName,"client","build")));
 app.get('/',(req,res)=>{
-  res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+  res.sendFile(path.resolve(dirName,"client","build","index.html"))
+  
 })
 
 mongoose.connect(process.env.MONGO_URL,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
 }).then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));
