@@ -39,8 +39,8 @@ app.get('/getImage', (req,res)=>{
     .catch(err => res.json(err))
 })
 
+app.use(express.static(path.resolve(__dirname,"client","build")));
 app.get('/',(req,res)=>{
-    app.use(express.static(path.resolve(__dirname,"client","build")));
   res.sendFile(path.resolve(__dirname,"client","build","index.html"))
 })
 
