@@ -11,8 +11,8 @@ function App() {
     formdata.append("file", file);
 
     try {
-      await axios.post(`${window.location.origin}/upload`, formdata);
-      const response = await axios.get(`${window.location.origin}/getImage`);
+      await axios.post(`${window.location.origin}/api/upload`, formdata);
+      const response = await axios.get(`${window.location.origin}/api/getImage`);
       setImages(response.data.map((item) => item.image));
     } catch (error) {
       console.log(error);
@@ -20,7 +20,7 @@ function App() {
   };
   useEffect(() => {
     axios
-      .get(`${window.location.origin}/getImage`)
+      .get(`${window.location.origin}/api/getImage`)
       .then((res) => setImages(res.data.map((item) => item.image)))
       .catch((err) => console.log(err));
   }, []);
@@ -49,7 +49,7 @@ function App() {
             <img
               className="w-48 h-48 m-2 p-1"
               key={index}
-              src={`${window.location.origin}/Images/`+image}
+              src={`${window.location.origin}/api/Images/`+image}
               alt={`image_${index}`}
             />
           ))}
