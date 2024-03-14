@@ -27,13 +27,17 @@ const upload = multer({
     storage: storage
 })
 
-app.post('/api/upload',upload.single('file'),(req,res)=>{
+app.post('/upload',upload.single('file'),(req,res)=>{
         UserModel.create({image: req.file.filename})
         .then(result => res.json(result))
         .catch(err => console.log(err))
 })
 
-app.get('/api/getImage', (req,res)=>{
+app.get('/', (req,res)=>{
+    res.json('hello')
+})
+
+app.get('/getImage', (req,res)=>{
     UserModel.find()
     .then(users =>res.json(users))
     .catch(err => res.json(err))

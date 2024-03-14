@@ -11,8 +11,8 @@ function App() {
     formdata.append("file", file);
 
     try {
-      await axios.post(`${window.location.origin}/api/upload`, formdata);
-      const response = await axios.get(`${window.location.origin}/api/getImage`);
+      await axios.post(`${window.location.origin}/upload`, formdata);
+      const response = await axios.get(`${window.location.origin}/getImage`);
       setImages(response.data.map((item) => item.image));
     } catch (error) {
       console.log(error);
