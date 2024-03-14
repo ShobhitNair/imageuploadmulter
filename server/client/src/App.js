@@ -20,7 +20,7 @@ function App() {
   };
   useEffect(() => {
     axios
-      .get(`${window.location.origin}/api/getImage`)
+      .get(`${window.location.origin}/getImage`)
       .then((res) => setImages(res.data.map((item) => item.image)))
       .catch((err) => console.log(err));
   }, []);
